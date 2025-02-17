@@ -1,9 +1,9 @@
 ﻿namespace University
 {
-    public class Teacher
+    public class Teacher : Person
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        //public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Courses { get; set; }
         public List<string> Groups { get; set; }
@@ -32,7 +32,7 @@
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            Name = "Unknown";
+            //Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects = new List<ResearchProject>();
@@ -41,24 +41,25 @@
 
         }
 
-        public Teacher(int id, CourseService cService)
-        {
-            AmountOfTeachers++;
-            Id = AmountOfTeachers;
-            Name = "Unknown";
-            Courses = new List<string>();
-            Groups = new List<string>();
-            ResearchProjects = new List<ResearchProject>();
-            _cService = cService;
+        //public Teacher(int id, CourseService cService)
+        //{
+        //    AmountOfTeachers++;
+        //    Id = AmountOfTeachers;
+        //    Name = "Unknown";
+        //    Courses = new List<string>();
+        //    Groups = new List<string>();
+        //    ResearchProjects = new List<ResearchProject>();
+        //    _cService = cService;
 
 
-        }
+        //}
 
         public Teacher(int id, string name, CourseService cService)
+            : base(name)
         {
             AmountOfTeachers++;
             Id = id;
-            Name = name;
+            //Name = name;
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects = new List<ResearchProject>();
@@ -69,10 +70,11 @@
         }
 
         public Teacher(int id, string name, string email, CourseService cService)
+            : base(name)
         {
             AmountOfTeachers++;
             Id = id;
-            Name = name;
+            //Name = name;
             Email = email;
             Courses = new List<string>();
             Groups = new List<string>();
