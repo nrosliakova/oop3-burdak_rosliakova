@@ -3,7 +3,6 @@
     public class Teacher : Person, IGetInfo
     {
         public int Id { get; set; }
-        //public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Courses { get; set; }
         public List<string> Groups { get; set; }
@@ -28,11 +27,10 @@
 
         public static int AmountOfTeachers = 0;
 
-        public Teacher()
+        public Teacher() 
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            //Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
@@ -41,12 +39,10 @@
 
         }
 
-        public Teacher( ILogger logger)
+        public Teacher( ILogger logger, string name) : base(name)
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            //Name = "Unknown";
-            //Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
@@ -55,11 +51,10 @@
 
         }
 
-        public Teacher(int id, ILogger logger)
+        public Teacher(int id, ILogger logger, string name) : base(name)
         {
             AmountOfTeachers++;
             Id = id;
-            //Name = name;
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
@@ -69,11 +64,10 @@
 
         }
 
-        public Teacher(int id, string email, ILogger logger)
+        public Teacher(int id, string email, ILogger logger, string name) : base(name)
         {
             AmountOfTeachers++;
             Id = id;
-            //Name = name;
             Email = email;
             Courses = new List<string>();
             Groups = new List<string>();
@@ -96,6 +90,11 @@
             _logger.Message($"{courseName} deleted from the {Name}'s courses list");
 
 
+        }
+
+        public new void ShowInformation()
+        {
+            Console.WriteLine($"Name: {Name}\nStatus: {Status}\n Email: {Email}\n Courses:{Courses}");
         }
 
         public virtual void GetInformation()
