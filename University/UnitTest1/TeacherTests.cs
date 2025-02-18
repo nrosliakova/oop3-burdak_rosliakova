@@ -1,38 +1,53 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestPlatform.Common.Exceptions;
+using XUnit.Framework;
 using University;
+using Moq;
 
 namespace TeacherTests
 {
-    [TestFixture]
-    public sealed class TeacherTests
+    
+    public class TeacherTests
     {
-
-        private Teacher teacher;
-
-        [SetUp]
-        public void Setup()
-        {
-            teacher = new Teacher(1, "Unit Richard", "unitrichard@gmail.com", "lector");
-        }
-
-        [Test]
+        [Fact]
         public void AddingGroup_to_Teacher()
-        {
+        {   var mockLogger = new Mock<ILogger>();
+            var teacher = new Teacher(1, "Unit Richard", "unitrichard@gmail.com", "lector");
             teacher.AddGroup("Group1");
-            Assert.IsTrue(teacher.Groups.Contains("Group1"), "Group was not added");
+            bool result = teacher.Groups.Contains("Group1");
+            Assert.True(result);
+            mockLogger.Verify(logger => logger.Log(It.Is<string>(msg => msg.Contains("Group1"))), Times.Once);
         }
-        [Test]
+        
+        [Fact]
         public void AddingCourse_to_Teacher()
+        {   var mockLogger = new Mock<ILogger>();
+            var teacher = new Teacher(1, "Unit Richard", "unitrichard@gmail.com", "lector");
+            teacher.AddCourse("Course1", "1 term" );
+            Assert.Equal("Course1", teacher.Courses[Courses.Count -1].Name);
+            mockLogger.Verify(logger => logger.Log(It.Is<string>(msg => msg.Contains("Course1"))), Times.Once);
+        }
+        
+
+        [Fact]
+        public void ShowingInfoWithHidingMethod()
         {
-            teacher.AddCourse("Course1");
-            Assert.IsTrue(teacher.Courses.Contains("Course1"), "Course was not added");
+            var mockLogger = new Mock<ILogger>();
+            var teacher = new Teacher(1, "Unit Richard", "unitrichard@gmail.com", "lector");
+            string result = teacher.ShowInformation();
+            Assert.Equal("Name: Unit Richard\nStatus: lector\n Email: unitrichard@gmail.com\n Courses:", result);
         }
 
-        [Test]
-        public void Changing_Teacher_Status()
+        [Fact]
+
+        public void OverrideMethodGetInfo()
         {
-            teacher.ChangeStatus("teacher assistant");
-            Assert.AreEqual("teacher assistant", teacher.Status, "Status has not changed");
+            var mockLogger = new Mock<ILogger>();
+            var teachassistant = new TeachAssis();
+            string result = teachassistant.GetInfoForOverride();
+            int id = teachassistant.Id;
+            Assert.Equal($"Unknown is a Teacher Assistant with {id} id on these courses: ", result);
+
         }
     }
+    
 }
