@@ -41,7 +41,7 @@
 
         }
 
-        public override void ShowInformation()
+        public new void ShowInformation()
         {
             if (hasAddress == true)
                 Console.WriteLine($"Student #{StudentID}: \n\tname: {Name} \n\tage: {Age}\n\tGPA: {StudentGPA} \n\tAddress: {Address}");

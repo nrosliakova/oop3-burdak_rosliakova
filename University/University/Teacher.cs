@@ -1,9 +1,9 @@
 ﻿namespace University
 {
-    public class Teacher : IGetInfo
-    { 
+    public class Teacher : Person, IGetInfo
+    {
         public int Id { get; set; }
-        public string Name { get; set; }
+        //public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Courses { get; set; }
         public List<string> Groups { get; set; }
@@ -32,11 +32,25 @@
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            Name = "Unknown";
+            //Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
 
+
+
+        }
+
+        public Teacher( ILogger logger)
+        {
+            AmountOfTeachers++;
+            Id = AmountOfTeachers;
+            //Name = "Unknown";
+            //Name = "Unknown";
+            Courses = new List<string>();
+            Groups = new List<string>();
+            ResearchProjects1 = new List<ResearchProject1>();
+            _logger = logger;
 
 
         }
@@ -44,21 +58,8 @@
         public Teacher(int id, ILogger logger)
         {
             AmountOfTeachers++;
-            Id = AmountOfTeachers;
-            Name = "Unknown";
-            Courses = new List<string>();
-            Groups = new List<string>();
-            ResearchProjects1 = new List<ResearchProject1>();
-            _logger = logger;
-
-
-        }
-
-        public Teacher(int id, string name, ILogger logger)
-        {
-            AmountOfTeachers++;
             Id = id;
-            Name = name;
+            //Name = name;
             Courses = new List<string>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
@@ -68,11 +69,11 @@
 
         }
 
-        public Teacher(int id, string name, string email, ILogger logger)
+        public Teacher(int id, string email, ILogger logger)
         {
             AmountOfTeachers++;
             Id = id;
-            Name = name;
+            //Name = name;
             Email = email;
             Courses = new List<string>();
             Groups = new List<string>();
