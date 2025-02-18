@@ -1,17 +1,17 @@
 ﻿namespace University
 {
-    public class Teacher
-    {
+    public class Teacher : IGetInfo
+    { 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Courses { get; set; }
         public List<string> Groups { get; set; }
-        public List<ResearchProject> ResearchProjects { get; set; }
+        public List<ResearchProject1> ResearchProjects1 { get; set; }
         public virtual string Status => "General Teacher";
-        private readonly CourseService _cService;
+        private readonly ILogger _logger;
         private int salary;
-
+        
         public int Salary
         {
             get { return salary; }
@@ -35,40 +35,40 @@
             Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
-            ResearchProjects = new List<ResearchProject>();
+            ResearchProjects1 = new List<ResearchProject1>();
 
 
 
         }
 
-        public Teacher(int id, CourseService cService)
+        public Teacher(int id, ILogger logger)
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
             Name = "Unknown";
             Courses = new List<string>();
             Groups = new List<string>();
-            ResearchProjects = new List<ResearchProject>();
-            _cService = cService;
+            ResearchProjects1 = new List<ResearchProject1>();
+            _logger = logger;
 
 
         }
 
-        public Teacher(int id, string name, CourseService cService)
+        public Teacher(int id, string name, ILogger logger)
         {
             AmountOfTeachers++;
             Id = id;
             Name = name;
             Courses = new List<string>();
             Groups = new List<string>();
-            ResearchProjects = new List<ResearchProject>();
-            _cService = cService;
+            ResearchProjects1 = new List<ResearchProject1>();
+            _logger = logger;
 
 
 
         }
 
-        public Teacher(int id, string name, string email, CourseService cService)
+        public Teacher(int id, string name, string email, ILogger logger)
         {
             AmountOfTeachers++;
             Id = id;
@@ -76,15 +76,15 @@
             Email = email;
             Courses = new List<string>();
             Groups = new List<string>();
-            ResearchProjects = new List<ResearchProject>();
-            _cService = cService;
+            ResearchProjects1 = new List<ResearchProject1>();
+            _logger = logger;
 
         }
 
         public void AddCourse(string courseName)
         {
             Courses.Add(courseName);
-            _cService.AddCourse(courseName);
+            _logger.Message($"{courseName} added to the {Name}'s courses list");
 
         }
 
@@ -92,12 +92,29 @@
         {
 
             Courses.Remove(courseName);
-            _cService.RemoveCourse(courseName);
+            _logger.Message($"{courseName} deleted from the {Name}'s courses list");
 
 
         }
 
-        public virtual void GetInfo()
+        public virtual void GetInformation()
+        {
+            Console.WriteLine($"{Name} is a GeneralTeacher with {Id} id on these courses: ");
+            if (Courses.Count != 0)
+            {
+                Console.WriteLine("General Teacher has no course");
+            }
+            else
+            {
+                foreach (var course in Courses)
+                {
+                    Console.WriteLine(course);
+                }
+            }
+
+        }
+        
+        public virtual void GetInfoForOverride()
         {
             Console.WriteLine($"{Name} is a GeneralTeacher with {Id} id on these courses: ");
             if (Courses.Count != 0)
@@ -122,13 +139,13 @@
         public void AddGroup(string group_name)
         {
             Groups.Add(group_name);
-            Console.WriteLine($"{group_name} course added");
+            _logger.Message($"{group_name} added to the {Name}'s groups list");
         }
 
         public void RemoveGroup(string group_name)
         {
             Groups.Remove(group_name);
-            Console.WriteLine($"{group_name} group removed");
+            _logger.Message($"{group_name} deleted from the {Name}'s groups list");
         }
 
         ~Teacher()
@@ -144,7 +161,7 @@
 
         public override string Status => "Teacher Assistant";
 
-        public override void GetInfo()
+        public override void GetInfoForOverride()
         {
             Console.WriteLine($"{Name} is a Teacher Assistant with {Id} id on these courses: ");
             if (Courses.Count != 0)
@@ -183,12 +200,14 @@
 
         public void AddResearchProject(string projectName)//overload
         {
-            ResearchProject researchProj = new ResearchProject();
-            researchProj.label = projectName;
+            ResearchProject1 researchProj = new ResearchProject1();
+            researchProj.Label = projectName;
+            ResearchProjects1.Add(researchProj);
+            
         }
-        public void AddResearchProject(ResearchProject projectName)//overload
+        public void AddResearchProject(ResearchProject1 projectName)//overload
         {
-            ResearchProjects.Add(projectName);
+            ResearchProjects1.Add(projectName);
         }
 
     }
