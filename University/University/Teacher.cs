@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string Email { get; set; }
-        public List<string> Courses { get; set; }
+        public List<Course> Courses { get; private set; }//D.I. - composition
         public List<string> Groups { get; set; }
         public List<ResearchProject1> ResearchProjects1 { get; set; }
         public virtual string Status => "General Teacher";
@@ -31,7 +31,7 @@
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            Courses = new List<string>();
+            Courses = new List<Course>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
 
@@ -43,7 +43,7 @@
         {
             AmountOfTeachers++;
             Id = AmountOfTeachers;
-            Courses = new List<string>();
+            Courses = new List<Course>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
             _logger = logger;
@@ -55,7 +55,7 @@
         {
             AmountOfTeachers++;
             Id = id;
-            Courses = new List<string>();
+            Courses = new List<Course>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
             _logger = logger;
@@ -69,27 +69,39 @@
             AmountOfTeachers++;
             Id = id;
             Email = email;
-            Courses = new List<string>();
+            Courses = new List<Course>();
             Groups = new List<string>();
             ResearchProjects1 = new List<ResearchProject1>();
             _logger = logger;
 
         }
 
-        public void AddCourse(string courseName)
+        public void AddCourse(string courseName, string term)
         {
-            Courses.Add(courseName);
+            Courses.Add(new Course(courseName,this ,term));
             _logger.Message($"{courseName} added to the {Name}'s courses list");
 
         }
 
-        public void RemoveCourse(string courseName)
+        public void RemoveCourse( Course courseName)
         {
 
             Courses.Remove(courseName);
             _logger.Message($"{courseName} deleted from the {Name}'s courses list");
 
 
+        }
+
+        public void ShowCourses()
+        {
+            Console.WriteLine($"{Name}'s courses: ");
+            if (Courses.Count() != 0)
+            {
+                foreach (var course in Courses)
+                {
+                   course.ShowInformation(); 
+                }
+            }
         }
 
         public new void ShowInformation()
