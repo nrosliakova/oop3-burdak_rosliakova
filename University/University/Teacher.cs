@@ -104,9 +104,9 @@
             }
         }
 
-        public new void ShowInformation()
+        public new string ShowInformation()
         {
-            Console.WriteLine($"Name: {Name}\nStatus: {Status}\n Email: {Email}\n Courses:{Courses}");
+            return $"Name: {Name}\nStatus: {Status}\n Email: {Email}\n Courses:{Courses}";
         }
 
         public virtual void GetInformation()
@@ -126,21 +126,22 @@
 
         }
         
-        public virtual void GetInfoForOverride()
+        public virtual string GetInfoForOverride()
         {
             Console.WriteLine($"{Name} is a GeneralTeacher with {Id} id on these courses: ");
             if (Courses.Count != 0)
             {
-                Console.WriteLine("General Teacher has no course");
+                return "General Teacher has no course";
             }
             else
             {
                 foreach (var course in Courses)
                 {
-                    Console.WriteLine(course);
+                    return course.Name;
                 }
             }
 
+            return "";
         }
 
         public void GetAmountCourses_CustomForHiding()
@@ -173,20 +174,22 @@
 
         public override string Status => "Teacher Assistant";
 
-        public override void GetInfoForOverride()
+        public override string GetInfoForOverride()
         {
             Console.WriteLine($"{Name} is a Teacher Assistant with {Id} id on these courses: ");
             if (Courses.Count != 0)
             {
-                Console.WriteLine("Teacher Assistant has no course");
+                return "Teacher Assistant has no course";
             }
             else
             {
                 foreach (var course in Courses)
                 {
-                    Console.WriteLine(course);
+                    return course.Name;
                 }
             }
+
+            return "";
         }
         public new void GetAmountCourses_CustomForHiding()
         {

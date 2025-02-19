@@ -7,19 +7,19 @@ public abstract class StaffMember
     public string Position { get; set; }
     
 
-    public abstract void ShowResponsibilities();
+    public abstract string ShowResponsibilities();
 
-    public void Working()
+    public string Working()
     {
-        Console.WriteLine("I am working working, tu-du-du..");
+        return "I am working working, tu-du-du..";
     }
 }
 
 public class CleaningManager : StaffMember
 {
-    public override void ShowResponsibilities()
+    public override string ShowResponsibilities()
     {
-        Console.WriteLine($"{Name} is responsible for cleaning A-wing changing bed linen in sleeping rooms every week");
+        return $"{Name} is responsible for cleaning A-wing changing bed linen in sleeping rooms every week";
     }
     
 }
