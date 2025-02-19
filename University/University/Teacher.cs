@@ -123,6 +123,7 @@
                     Console.WriteLine(course);
                 }
             }
+
         }
         
         public virtual string GetInfoForOverride()
@@ -190,9 +191,7 @@
 
             return "";
         }
-    
-
-    public new void GetAmountCourses_CustomForHiding()
+        public new void GetAmountCourses_CustomForHiding()
         {
             if (Courses.Count != 0)
             {
