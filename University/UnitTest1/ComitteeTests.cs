@@ -1,6 +1,5 @@
 using University;
 using Moq;
-using Xunit;
 namespace UnitTest1;
 
 
@@ -10,8 +9,10 @@ public class ComitteeTests
 
    public void GradingProj()
    {
-      var mockIEvaluator = new Mock<IEvaluator>();
-      var commiteemem = new CommitteeMember(mockIEvaluator.Object,"Mark Levytskyi", "Senior Evaluation Manager");
+      Mock<IEvaluator> mockEvaluator = new Mock<IEvaluator>();
+      mockEvaluator.Setups(e => e.)
+      IEvaluator e = new Evaluator();
+      var commiteemem = new CommitteeMember(mockEvaluator.Object,"Mark Levytskyi", "Senior Evaluation Manager");
       var proj = new ResearchProject1();
       proj.Field = "Medical Diagnostic";
       proj.Label = "Creating new type of MRT";
@@ -23,8 +24,8 @@ public class ComitteeTests
 
    public void GivingFeedbackForProj()
    {
-      var mockIEvaluator = new Mock<IEvaluator>();
-      var commiteemem = new CommitteeMember(mockIEvaluator.Object,"Mark Levytskyi", "Senior Evaluation Manager");
+      var mockEvaluator = new Mock<IEvaluator>();
+      var commiteemem = new CommitteeMember(mockEvaluator.Object,"Mark Levytskyi", "Senior Evaluation Manager");
       var proj = new ResearchProject1();
       proj.Field = "Medical Diagnostic";
       proj.Label = "Creating new type of MRT";

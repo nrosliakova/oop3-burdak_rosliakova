@@ -176,20 +176,17 @@
 
         public override string GetInfoForOverride()
         {
-            Console.WriteLine($"{Name} is a Teacher Assistant with {Id} id on these courses: ");
+            string result = $"{Name} is a Teacher Assistant with {Id} id on these courses: ";
             if (Courses.Count != 0)
             {
                 return "Teacher Assistant has no course";
             }
-            else
+            foreach (var course in Courses)
             {
-                foreach (var course in Courses)
-                {
-                    return course.Name;
-                }
+                result += course.Name;
             }
 
-            return "";
+            return result;
         }
         public new void GetAmountCourses_CustomForHiding()
         {

@@ -6,8 +6,13 @@ namespace University
     {
         static void Main(string[] args)
         {
+            IEvaluator evaluator = new Evaluator(); 
+            var commmem = new CommitteeMember(evaluator, "Joshua","High Manager" );
+            ResearchProject1 reproj = new ResearchProject1();
+            reproj.Label = "Label of project";
+            Console.WriteLine(commmem.GiveFeedback(reproj));
 
-            var project = new ResearchProject("Project1", "Anna", new DateTime(2025, 1, 25), 30000);
+            /*var project = new ResearchProject("Project1", "Anna", new DateTime(2025, 1, 25), 30000);
             project.AddExpense(25000);
 
             Address address1 = new Address("Ukraine", "Zhytomyr", "Mykhailivska", "25");
@@ -20,7 +25,7 @@ namespace University
             student1.ShowInformation();
             student2.ShowInformation();
             student3.ShowInformation();
-            Console.WriteLine($"Student count: {Student.Counter}");
+            Console.WriteLine($"Student count: {Student.Counter}"); */
 
 
 
