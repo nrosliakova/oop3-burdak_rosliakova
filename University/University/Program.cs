@@ -6,11 +6,11 @@ namespace University
     {
         static void Main(string[] args)
         {
-            IEvaluator evaluator = new Evaluator(); 
+           /* IEvaluator evaluator = new Evaluator(); 
             var commmem = new CommitteeMember(evaluator, "Joshua","High Manager" );
             ResearchProject1 reproj = new ResearchProject1();
             reproj.Label = "Label of project";
-            Console.WriteLine(commmem.GiveFeedback(reproj));
+            Console.WriteLine(commmem.GiveFeedback(reproj));*/
 
             /*var project = new ResearchProject("Project1", "Anna", new DateTime(2025, 1, 25), 30000);
             project.AddExpense(25000);
