@@ -9,7 +9,7 @@ namespace University
         public DateTime StartDate { get; }
         public float FundingAmount { get; set; }
         public float expenses = 0;
-
+        private readonly ILogger _logger;
 
         public ResearchProject()
         {
@@ -35,15 +35,27 @@ namespace University
 
         public float AddExpense(float newExpense)
         {
-            if (FundingAmount >= expenses)
+            try
             {
-                expenses += newExpense;
-                FundingAmount -= expenses;
-                Console.WriteLine($"new expense added, funding left: {FundingAmount}");
+                if (FundingAmount >= expenses)
+                {
+                    expenses += newExpense;
+                    FundingAmount -= expenses;
+                    Console.WriteLine($"new expense added, funding left: {FundingAmount}");
+                }
+                else
+                {
+                    //Console.WriteLine($"new expense not added, not enough funding");
+                    _logger.Message("new expense not added, not enough funding");
+                    //throw new Exception("Not enough funding");
+                    throw new InsufficientFundsException("Not enough funding");
+                }
             }
-            else
-                Console.WriteLine($"new expense not added, not enough funding");
-
+            catch (InsufficientFundsException ex)
+            {
+                Console.WriteLine($"Insufficient Funds: {ex.Message}");
+                throw ex;
+            }
             return FundingAmount;
         }
 
