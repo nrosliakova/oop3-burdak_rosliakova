@@ -36,6 +36,7 @@ public class RepositoryTests
             
         repo.Add(course1);
         repo.Add(course2);
+        
         Assert.Contains(course2, repo.GetAll());
 
 
