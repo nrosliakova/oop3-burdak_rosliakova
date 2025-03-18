@@ -8,6 +8,7 @@ namespace University
         {
 
             var project = new ResearchProject("Project1", "Anna", new DateTime(2025, 1, 25), 30000);
+            //project.AddExpense(25000);
             project.AddExpense(25000);
 
             Address address1 = new Address("Ukraine", "Zhytomyr", "Mykhailivska", "25");
@@ -22,7 +23,20 @@ namespace University
             student3.ShowInformation();
             Console.WriteLine($"Student count: {Student.Counter}");
 
+            var courses = new CourseService();
 
+            //courses.RemoveCourse("English");
+
+
+            courses.AddCourse("Geometry");
+            courses.AddCourse("English");
+            courses.AddCourse("Basics of Math");
+            courses.PrintCourses();
+
+            courses.RemoveCourse("English");
+            //courses.RemoveCourse("a");
+            courses.PrintCourses();
+            
 
         }
     }
