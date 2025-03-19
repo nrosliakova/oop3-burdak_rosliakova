@@ -20,6 +20,15 @@ public class CommitteeMember:ICommitteeMember
 
     public string GradeProj(ResearchProject1 researchProj, int score)
     {
-        return _evaluator.EvaluateProj(researchProj, score);
+        try
+        {  
+            return _evaluator.EvaluateProj(researchProj, score);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        return "";
     }
 }

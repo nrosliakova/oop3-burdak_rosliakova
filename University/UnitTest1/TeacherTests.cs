@@ -34,7 +34,7 @@ namespace TeacherTests
             var mockLogger = new Mock<ILogger>();
             var teacher = new Teacher(1, "unitrichard@gmail.com", mockLogger.Object ,"Unit Richard");
             string result = teacher.ShowInformation();
-            Assert.Equal("Name: Unit Richard\nStatus: lector\n Email: unitrichard@gmail.com\n Courses:", result);
+            Assert.Equal("Name: Unit Richard\nStatus: General Teacher\n Email: unitrichard@gmail.com\n Courses:System.Collections.Generic.List`1[University.Course]", result);
         }
 
         [Fact]

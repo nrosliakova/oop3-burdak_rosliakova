@@ -6,6 +6,11 @@ namespace University
     {
         static void Main(string[] args)
         {
+            /*IEvaluator evaluator = new Evaluator(); 
+            var commmem = new CommitteeMember(evaluator, "Joshua","High Manager" );
+            ResearchProject1 reproj = new ResearchProject1();
+            reproj.Label = "Label of project";
+            Console.WriteLine(commmem.GiveFeedback(reproj));
 
             var project = new ResearchProject("Project1", "Anna", new DateTime(2025, 1, 25), 30000);
             //project.AddExpense(25000);
@@ -21,21 +26,39 @@ namespace University
             student1.ShowInformation();
             student2.ShowInformation();
             student3.ShowInformation();
-            Console.WriteLine($"Student count: {Student.Counter}");
+            Console.WriteLine($"Student count: {Student.Counter}");*/
 
-            var courses = new CourseService();
+            List<Course> courses = new List<Course>();
+            List<Course> coursesGetAll = new List<Course>();
+            IRepository<Course> repo = new Repository<Course>(courses);
+            Teacher uniTeacher = new Teacher();
+            Course course1 = new Course("Discrete Math", uniTeacher, "Spring" );
+            Course course2 = new Course("Intro to OOP", uniTeacher, "Spring" );
+            Course course3 = new Course("Algorithms", uniTeacher, "Summer" );
+            
+            repo.Add(course1);
+            repo.Add(course2);
+            repo.Add(course3);
+            coursesGetAll = repo.GetAll();
+            
+            foreach (var course in coursesGetAll)
+            {
+              Console.WriteLine(course.Name);  
+            }
+
+            var courses2 = new CourseService();
 
             //courses.RemoveCourse("English");
 
 
-            courses.AddCourse("Geometry");
-            courses.AddCourse("English");
-            courses.AddCourse("Basics of Math");
-            courses.PrintCourses();
+            courses2.AddCourse("Geometry");
+            courses2.AddCourse("English");
+            courses2.AddCourse("Basics of Math");
+            courses2.PrintCourses();
 
-            courses.RemoveCourse("English");
+            courses2.RemoveCourse("English");
             //courses.RemoveCourse("a");
-            courses.PrintCourses();
+            courses2.PrintCourses();
             
 
         }
