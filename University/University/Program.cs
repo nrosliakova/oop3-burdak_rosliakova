@@ -40,24 +40,25 @@ namespace University
             repo.Add(course2);
             repo.Add(course3);
             coursesGetAll = repo.GetAll();
+            
             foreach (var course in coursesGetAll)
             {
               Console.WriteLine(course.Name);  
             }
 
-            var courses = new CourseService();
+            var courses2 = new CourseService();
 
             //courses.RemoveCourse("English");
 
 
-            courses.AddCourse("Geometry");
-            courses.AddCourse("English");
-            courses.AddCourse("Basics of Math");
-            courses.PrintCourses();
+            courses2.AddCourse("Geometry");
+            courses2.AddCourse("English");
+            courses2.AddCourse("Basics of Math");
+            courses2.PrintCourses();
 
-            courses.RemoveCourse("English");
+            courses2.RemoveCourse("English");
             //courses.RemoveCourse("a");
-            courses.PrintCourses();
+            courses2.PrintCourses();
             
 
         }
