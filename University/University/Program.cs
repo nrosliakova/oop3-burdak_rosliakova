@@ -95,7 +95,7 @@ namespace University
         public static void PrintStudentsList(List<Student> students)
         {
 
-            ;            Console.WriteLine("STUDENTS");
+            Console.WriteLine("STUDENTS");
             foreach (var el in students)
             {
                 el.ShowInformation();
