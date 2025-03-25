@@ -14,11 +14,6 @@
         public int Id { get; }
         public float StudentGPA { get; }
 
-        //public Student()
-        //{
-
-        //}
-
         public Student(int id, string name, int age, float gpa, Address address)
             : base(name, age, address)
         {
