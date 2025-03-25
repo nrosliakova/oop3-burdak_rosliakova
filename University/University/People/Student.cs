@@ -1,6 +1,6 @@
 ﻿namespace University
 {
-    public partial class Student : Person
+    public partial class Student : Person, HasId
     {
         private static int counter = 0;
         public static int Counter
@@ -11,7 +11,7 @@
             }
         }
 
-        public long StudentID { get; }
+        public int Id { get; }
         public float StudentGPA { get; }
 
         //public Student()
@@ -19,22 +19,22 @@
 
         //}
 
-        public Student(long id, string name, int age, float gpa, Address address)
+        public Student(int id, string name, int age, float gpa, Address address)
             : base(name, age, address)
         {
 
-            StudentID = id;
+            Id = id;
             StudentGPA = gpa;
 
             counter++;
             hasAddress = true;
 
         }
-        public Student(long id, string name, int age, float gpa)
+        public Student(int id, string name, int age, float gpa)
             : base(name, age)
         {
 
-            StudentID = id;
+            Id = id;
             StudentGPA = gpa;
 
             counter++;
@@ -44,15 +44,15 @@
         public new void ShowInformation()
         {
             if (hasAddress == true)
-                Console.WriteLine($"Student #{StudentID}: \n\tname: {Name} \n\tage: {Age}\n\tGPA: {StudentGPA} \n\tAddress: {Address}");
+                Console.WriteLine($"Student #{Id}: \n\tname: {Name} \n\tage: {Age}\n\tGPA: {StudentGPA} \n\tAddress: {Address}");
             else
-                Console.WriteLine($"Student #{StudentID}: \n\tname: {Name} \n\tage: {Age}\n\tGPA: {StudentGPA}");
+                Console.WriteLine($"Student #{Id}: \n\tname: {Name} \n\tage: {Age}\n\tGPA: {StudentGPA}");
 
         }
 
         ~Student()
         {
-            Console.WriteLine($"Student #{StudentID} ({Name}) was expelled.");
+            Console.WriteLine($"Student #{Id} ({Name}) was expelled.");
         }
 
     }
