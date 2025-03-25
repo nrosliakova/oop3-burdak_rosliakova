@@ -59,8 +59,38 @@ namespace University
             courses2.RemoveCourse("English");
             //courses.RemoveCourse("a");
             courses2.PrintCourses();
-            
+
+            Address address1 = new Address("Ukraine", "Zhytomyr", "Mykhailivska", "25");
+            Address address2 = new Address("Ukraine", "Kyiv", "Zhytomyrska", "4");
+            Address address3 = new Address("Ukraine", "Kyiv", "Chreschatyk", "36");
+            var student1 = new Student(2345678, "Nina", 18, 82.7f, address1);
+            var student2 = new Student(8465312, "Vanya", 20, 87f, address2);
+            var student3 = new Student(7389569, "Misha", 26, 89.5f);
+            //var students = new List<Student>();
+            //var repo = new Repository(students);
+            var students = new Repository<Student>();
+            students.Add(student3);
+            students.Add(student1);
+            students.Add(student2);
+            var s = students.GetAll();
+            PrintStudentsList(s);
+            Console.WriteLine($"number of students: {students.Count()}");
+            students.Delete(student2);
+            PrintStudentsList(s);
+            var sortedStudents = students.SortBy(student => student.StudentGPA).ToList();
+            PrintStudentsList(sortedStudents);
 
         }
+
+        public static void PrintStudentsList(List<Student> students)
+        {
+
+            ;            Console.WriteLine("STUDENTS");
+            foreach (var el in students)
+            {
+                el.ShowInformation();
+            }
+        }
     }
+
 }
