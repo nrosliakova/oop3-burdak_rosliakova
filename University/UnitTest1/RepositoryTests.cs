@@ -40,4 +40,21 @@ public class RepositoryTests
 
 
     }
+
+    [Fact]
+    public void SearchingForElementById()
+    {
+        List<Course> courses = new List<Course>();
+        List<Course> coursesGetAll = new List<Course>();
+        IRepository<Course> repo = new Repository<Course>(courses);
+        Teacher uniTeacher = new Teacher();
+        Course course1 = new Course("Discrete Math", uniTeacher, "Spring" );
+        Course course2 = new Course("Intro to OOP", uniTeacher, "Spring" );
+        Course course3 = new Course("Algorithms", uniTeacher, "Summer" );
+            
+        repo.Add(course1);
+        repo.Add(course2); 
+        repo.Add(course3);
+        Assert.Equal(course2, repo.FindById(2));
+    }
 }

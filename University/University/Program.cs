@@ -27,11 +27,12 @@ namespace University
             student2.ShowInformation();
             student3.ShowInformation();
             Console.WriteLine($"Student count: {Student.Counter}");*/
-
+            List<Teacher> listOfTeachers = new List<Teacher>();
             List<Course> courses = new List<Course>();
             List<Course> coursesGetAll = new List<Course>();
             IRepository<Course> repo = new Repository<Course>(courses);
             Teacher uniTeacher = new Teacher();
+            listOfTeachers.Add(uniTeacher);
             Course course1 = new Course("Discrete Math", uniTeacher, "Spring" );
             Course course2 = new Course("Intro to OOP", uniTeacher, "Spring" );
             Course course3 = new Course("Algorithms", uniTeacher, "Summer" );
@@ -59,7 +60,13 @@ namespace University
             courses2.RemoveCourse("English");
             //courses.RemoveCourse("a");
             courses2.PrintCourses();
-            
+
+
+            Teacher teacher = new Teacher();
+            listOfTeachers.Add(teacher);
+            IRepository<Teacher> teachRepo = new Repository<Teacher>(listOfTeachers);
+            Console.WriteLine(teachRepo.FindById(2).Name);
+
 
         }
     }
