@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace University;
 
-public class Repository<T> : IRepository<T>
+public class Repository<T> : IRepository<T> where T : HasId
 {
     private readonly List<T> _items;
     public Repository(List<T> items)
@@ -44,4 +44,16 @@ public class Repository<T> : IRepository<T>
             Console.WriteLine(el);
         }
     }
+
+    public T FindById(int id)
+    {
+        T item = _items.SingleOrDefault(s => s.Id == id);
+        if (item == null)
+        {
+            throw new Exception("Елемента з таким id не існує");
+        }
+
+        return item;
+    }
+
 }

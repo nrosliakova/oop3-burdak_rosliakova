@@ -1,7 +1,8 @@
 ﻿namespace University
 {
-    public class Teacher : Person, IGetInfo
+    public class Teacher : Person, IGetInfo, HasId
     {
+        
         public int Id { get; set; }
         public string Email { get; set; }
         public List<Course> Courses { get; private set; }//D.I. - composition

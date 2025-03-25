@@ -27,11 +27,12 @@ namespace University
             student2.ShowInformation();
             student3.ShowInformation();
             Console.WriteLine($"Student count: {Student.Counter}");*/
-
+            List<Teacher> listOfTeachers = new List<Teacher>();
             List<Course> courses = new List<Course>();
             List<Course> coursesGetAll = new List<Course>();
             IRepository<Course> repo = new Repository<Course>(courses);
             Teacher uniTeacher = new Teacher();
+            listOfTeachers.Add(uniTeacher);
             Course course1 = new Course("Discrete Math", uniTeacher, "Spring" );
             Course course2 = new Course("Intro to OOP", uniTeacher, "Spring" );
             Course course3 = new Course("Algorithms", uniTeacher, "Summer" );
@@ -60,6 +61,7 @@ namespace University
             //courses.RemoveCourse("a");
             courses2.PrintCourses();
 
+
             Address address1 = new Address("Ukraine", "Zhytomyr", "Mykhailivska", "25");
             Address address2 = new Address("Ukraine", "Kyiv", "Zhytomyrska", "4");
             Address address3 = new Address("Ukraine", "Kyiv", "Chreschatyk", "36");
@@ -79,6 +81,14 @@ namespace University
             PrintStudentsList(s);
             var sortedStudents = students.SortBy(student => student.StudentGPA).ToList();
             PrintStudentsList(sortedStudents);
+
+
+            Teacher teacher = new Teacher();
+            listOfTeachers.Add(teacher);
+            IRepository<Teacher> teachRepo = new Repository<Teacher>(listOfTeachers);
+            Console.WriteLine(teachRepo.FindById(2).Name);
+
+
 
         }
 
