@@ -67,6 +67,9 @@ namespace University
             IRepository<Teacher> teachRepo = new Repository<Teacher>(listOfTeachers);
             Console.WriteLine(teachRepo.FindById(2).Name);
 
+            Cultural cultural = new Cultural();
+            cultural.GetDateAndTime("en-NZ", "uk-UA");
+
 
         }
     }
