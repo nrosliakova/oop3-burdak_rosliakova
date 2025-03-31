@@ -10,7 +10,7 @@ namespace ResearchProjectTests
             Address address = new Address("Ukraine", "Zhytomyr", "Mykhailivska", "25");
             var student = new Student(2345678, "Nina", 18, 82.7f, address);
             student.ShowInformation();
-            Assert.Equal(2345678, student.StudentID);
+            Assert.Equal(2345678, student.Id);
             Assert.Equal("Nina", student.Name);
         }
 
