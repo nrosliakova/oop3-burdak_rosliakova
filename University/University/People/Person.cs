@@ -6,7 +6,7 @@
         public int Age { get; }
         public Address? Address { get; }
         public bool hasAddress = false;
-
+        private char[] charsToTrim = { '*', ' ', '\'' , '-'};
 
         public Person()
         {
@@ -16,7 +16,7 @@
         public Person(string name, int age, Address address)
         {
 
-            Name = name;
+            Name = name.Trim(charsToTrim);
             Age = age;
             Address = address;
 

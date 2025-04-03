@@ -7,8 +7,10 @@ namespace University
         public string Title { get; }
         public string LeadResearcher { get; }
         public DateTime StartDate { get; }
-        public float FundingAmount { get; set; }
-        public float expenses = 0;
+        //public float FundingAmount { get; set; }
+        public double FundingAmount { get; set; }
+        //public float expenses = 0;
+        public double expenses = 0;
         private readonly ILogger _logger;
 
         public ResearchProject()
@@ -16,12 +18,22 @@ namespace University
 
         }
 
-        public ResearchProject(string title, string researcher, DateTime startDate, float funding)
+        public ResearchProject(string title, string researcher, DateTime startDate, double funding)
         {
 
             Title = title;
             LeadResearcher = researcher;
             StartDate = startDate;
+            FundingAmount = funding;
+        }
+
+        public ResearchProject(string title, string researcher, DateTime startDate, int funding)
+        {
+
+            Title = title;
+            LeadResearcher = researcher;
+            StartDate = startDate;
+            Convert.ToDouble(funding);
             FundingAmount = funding;
         }
 
@@ -33,7 +45,7 @@ namespace University
             LeadResearcher = researcher;
         }
 
-        public float AddExpense(float newExpense)
+        public double AddExpense(float newExpense)
         {
             try
             {
